@@ -2,13 +2,16 @@
 // SIMPLE AUTH (FINAL CLEAN)
 // ==============================
 
-// SWITCH FORMS
+// SWITCH LOGIN / SIGNUP FORM
 window.switchForm = function(type) {
   document.getElementById("login-form").classList.toggle("hidden", type !== "login");
   document.getElementById("signup-form").classList.toggle("hidden", type !== "signup");
 };
 
-// SESSION
+// ==============================
+// SESSION HANDLING
+// ==============================
+
 function setSession(user) {
   localStorage.setItem("veloura_session", JSON.stringify({
     name: user.name,
@@ -17,70 +20,84 @@ function setSession(user) {
   }));
 }
 
+function getSession() {
+  return JSON.parse(localStorage.getItem("veloura_session"));
+}
+
 function getUser() {
   return JSON.parse(localStorage.getItem("veloura_user"));
 }
 
+// ==============================
 // SIGNUP
+// ==============================
+
 window.handleSignup = function(e) {
   e.preventDefault();
 
   const name = document.getElementById("signup-name").value;
   const email = document.getElementById("signup-email").value;
-  const pass = document.getElementById("signup-pass").value;
+  const password = document.getElementById("signup-pass").value;
   const confirm = document.getElementById("signup-confirm").value;
 
-  if (pass !== confirm) return alert("Passwords do not match");
+  if (password !== confirm) {
+    alert("Passwords do not match ❌");
+    return;
+  }
 
-  localStorage.setItem("veloura_user", JSON.stringify({ name, email, password: pass }));
+  const user = { name, email, password };
 
-  alert("Account created ");
+  localStorage.setItem("veloura_user", JSON.stringify(user));
+
+  alert("Account created successfully ");
   switchForm("login");
 };
 
+// ==============================
 // LOGIN
+// ==============================
+
 window.handleLogin = function(e) {
   e.preventDefault();
 
   const email = document.getElementById("login-email").value;
-  const pass = document.getElementById("login-password").value;
+  const password = document.getElementById("login-password").value;
 
   const user = getUser();
 
-  if (!user || user.email !== email || user.password !== pass) {
-    return alert("Invalid credentials ");
+  if (!user) {
+    alert("No account found. Please sign up.");
+    return;
   }
 
-  setSession(user);
+  if (email === user.email && password === user.password) {
+    setSession(user);
 
-  alert("Login successful ");
-  window.location.href = "index.html";
+    alert("Login successful ");
+    window.location.href = "index.html";
+  } else {
+    alert("Wrong email or password ");
+  }
 };
 
+// ==============================
 // LOGOUT
+// ==============================
+
 window.handleLogout = function() {
   localStorage.removeItem("veloura_session");
   window.location.href = "login.html";
 };
 
+// ==============================
+// AUTO REDIRECT (OPTIONAL)
+// ==============================
 
-async function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+document.addEventListener("DOMContentLoaded", () => {
+  const session = getSession();
 
-  const res = await fetch("http://localhost:5000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
-  });
-
-  const data = await res.json();
-
-  localStorage.setItem("userId", data.userId);
-
-  alert("Login successful ");
-
-  window.location.href = "index.html";
-}
+  // If already logged in → prevent opening login page again
+  if (session && window.location.pathname.includes("login.html")) {
+    window.location.href = "index.html";
+  }
+});

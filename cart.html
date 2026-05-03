@@ -2,20 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cart - Veloura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Cart — Veloura">
+  <title>Veloura | Your Cart</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
   <link rel="stylesheet" href="styles/main.css">
 </head>
-
 <body>
 
-  <h1>Your Cart</h1>
+  <header>
+    <nav class="navbar">
+      <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">VELOURA.</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#shop">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="login.html" style="color:rgba(255,255,255,0.7);font-size:18px;margin-right:4px" title="Account">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="cart.html" style="color:inherit;text-decoration:none">
+          <div class="cart-container">
+            <i class="fas fa-shopping-bag"></i>
+            <span id="cart-count" class="cart-badge">0</span>
+          </div>
+        </a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
+    </nav>
+  </header>
 
-  <div id="cart-items"></div>
+  <main style="min-height:80vh;padding:60px 5%;max-width:1000px;margin:0 auto;">
+    <h1 style="font-family:var(--font-display);font-size:clamp(26px,5vw,40px);font-weight:600;letter-spacing:2px;margin-bottom:6px;">Your Cart</h1>
+    <p id="cart-subtitle" style="color:var(--muted);font-size:14px;margin-bottom:36px;"></p>
 
-  <h3>Subtotal: <span id="subtotal-price">₹0</span></h3>
-  <h2>Total: <span id="total-price">₹0</span></h2>
+    <!-- Items -->
+    <div id="cart-items"></div>
 
-  <script src="scripts/cart.js"></script>
+    <!-- Summary box -->
+    <div id="cart-summary-box" style="display:none;background:var(--charcoal);color:#fff;border-radius:16px;padding:28px 32px;max-width:420px;margin-left:auto;margin-top:12px;">
+      <h2 style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;margin-bottom:20px;color:#d4a017;">Order Summary</h2>
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px;color:rgba(255,255,255,.7);">
+        <span>Subtotal</span><span id="subtotal-price">₹0</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px;color:rgba(255,255,255,.7);">
+        <span>Shipping</span><span style="color:#27AE60">FREE</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;margin-top:8px;font-size:20px;font-weight:700;color:#d4a017;">
+        <span>Total</span><span id="total-price">₹0</span>
+      </div>
+      <button onclick="location.href='checkout.html'"
+        style="width:100%;padding:15px;margin-top:20px;background:linear-gradient(135deg,#9a6f0b,#d4a017,#b8860b);background-size:200%;border:none;border-radius:10px;color:#111;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:transform .3s,box-shadow .3s;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(184,134,11,.4)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        Proceed to Checkout →
+      </button>
+      <div onclick="location.href='index.html'"
+        style="text-align:center;margin-top:12px;color:rgba(255,255,255,.45);font-size:13px;cursor:pointer;">
+        ← Continue Shopping
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="cart-empty" style="display:none;text-align:center;padding:80px 20px;color:var(--muted);">
+      <i class="fas fa-shopping-bag" style="font-size:52px;display:block;margin-bottom:20px;opacity:.25;"></i>
+      <h2 style="font-family:var(--font-display);font-size:28px;color:var(--charcoal);margin-bottom:10px;">Your cart is empty</h2>
+      <p style="font-size:14px;margin-bottom:28px;">Looks like you haven't added anything yet.</p>
+      <a href="index.html"
+        style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#9a6f0b,#d4a017);color:#111;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">
+        Explore Collection
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">VELOURA.</div>
+        <p>Curated artisan fashion rooted in Indian craft traditions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul><li><a href="index.html#shop">All Products</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 <span class="gold">Veloura</span>. Made with 🙏 in India.</span>
+      <span>All prices inclusive of GST · ₹ INR</span>
+    </div>
+  </footer>
+
+  <script src="scripts/cart.js" defer></script>
+  <script>
+    // Mobile menu
+    document.addEventListener('DOMContentLoaded', () => {
+      const ham = document.querySelector('.hamburger');
+      const nav = document.querySelector('.nav-links');
+      if (ham) ham.addEventListener('click', () => nav.classList.toggle('nav-active'));
+    });
+  </script>
 
 </body>
 </html>

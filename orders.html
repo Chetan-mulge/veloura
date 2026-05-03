@@ -3,38 +3,34 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orders | Veloura</title>
+
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
-<h1>Your Orders</h1>
-<div id="orders"></div>
+<h1 style="text-align:center;margin-top:40px;">Your Orders</h1>
+
+<div id="orders" style="text-align:center;margin-top:30px;"></div>
 
 <script>
-async function loadOrders() {
-  const res = await fetch("http://localhost:5000/orders");
-  const data = await res.json();
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("orders");
 
-  const container = document.getElementById("orders");
+    // 🔐 Check login
+    const session = JSON.parse(localStorage.getItem("veloura_session"));
 
-  if (data.length === 0) {
-    container.innerHTML = "<p>No orders yet</p>";
-    return;
-  }
+    if (!session) {
+      window.location.href = "login.html";
+      return;
+    }
 
-  data.forEach(order => {
-    const div = document.createElement("div");
-
-    div.innerHTML = `
-      <h3>${order.id}</h3>
-      <p>Total: ₹${order.total}</p>
-      <hr>
+    // 🚫 No backend yet → show placeholder
+    container.innerHTML = `
+      <p style="color:gray;font-size:16px;">
+        Orders feature will be available after backend integration 🚀
+      </p>
     `;
-
-    container.appendChild(div);
   });
-}
-
-loadOrders();
 </script>
 
 </body>
