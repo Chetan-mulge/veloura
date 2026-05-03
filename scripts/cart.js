@@ -1,17 +1,39 @@
-const options = {
-  // existing fields...
-  description: "Purchase Description",
-  method: {
-    upi: true,
-    card: true,
-    netbanking: true,
-    wallet: true
-  },
+const cartItemsContainer = document.getElementById('cart-items');
+const subtotalEl = document.getElementById('subtotal-price');
+const totalEl = document.getElementById('total-price');
 
-  prefill: {
-    name: name,
-    email: "test@veloura.com",
-    contact: phone
-  },
-  // other existing fields...
+function loadCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (!cartItemsContainer) return;
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = "<p>Your cart is empty</p>";
+    subtotalEl.innerText = "₹0";
+    totalEl.innerText = "₹0";
+    return;
+  }
+
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+        <span>${item.title} (x${item.quantity})</span>
+        <span>₹${item.price * item.quantity}</span>
+      </div>
+    `;
+
+    cartItemsContainer.appendChild(div);
+    total += item.price * item.quantity;
+  });
+
+  subtotalEl.innerText = "₹" + total;
+  totalEl.innerText = "₹" + total;
 }
+
+window.addEventListener("DOMContentLoaded", loadCart);
