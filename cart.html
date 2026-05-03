@@ -1,49 +1,21 @@
-// ==============================
-// CART PAGE FINAL FIX
-// ==============================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart - Veloura</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
 
-const cartItemsContainer = document.getElementById('cart-items');
-const subtotalEl = document.getElementById('subtotal-price');
-const totalEl = document.getElementById('total-price');
+<body>
 
-function loadCart() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  <h1>Your Cart</h1>
 
-  if (!cartItemsContainer) {
-    console.error("cart-items not found ❌");
-    return;
-  }
+  <div id="cart-items"></div>
 
-  if (cart.length === 0) {
-    cartItemsContainer.innerHTML = "<p>Your cart is empty</p>";
-    subtotalEl.innerText = "₹0";
-    totalEl.innerText = "₹0";
-    return;
-  }
+  <h3>Subtotal: <span id="subtotal-price">₹0</span></h3>
+  <h2>Total: <span id="total-price">₹0</span></h2>
 
-  cartItemsContainer.innerHTML = "";
+  <script src="scripts/cart.js"></script>
 
-  let total = 0;
-
-  cart.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
-
-    div.innerHTML = `
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-        <span>${item.title} (x${item.quantity})</span>
-        <span>₹${item.price * item.quantity}</span>
-      </div>
-    `;
-
-    cartItemsContainer.appendChild(div);
-
-    total += item.price * item.quantity;
-  });
-
-  subtotalEl.innerText = "₹" + total;
-  totalEl.innerText = "₹" + total;
-}
-
-// RUN
-window.addEventListener("DOMContentLoaded", loadCart);
+</body>
+</html>
