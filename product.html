@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Veloura</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">VELOURA.</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="login.html" style="color:rgba(255,255,255,0.7);font-size:18px;margin-right:4px">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="cart.html" style="color:inherit;text-decoration:none">
+        <div class="cart-container">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cart-count" class="cart-badge">0</span>
+        </div>
+      </a>
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <section class="product-detail-container">
+    <div id="product-detail" class="product-detail-wrapper">
+      <div class="loading" style="grid-column:1/-1">Loading product…</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px">
+      <span>© 2024 <span class="gold">Veloura</span>. Made with 🙏 in India.</span>
+      <span>All prices inclusive of GST · ₹ INR</span>
+    </div>
+  </footer>
+
+  <script src="scripts/product.js" defer></script>
+  <script defer>
+    const ham = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-links');
+    if(ham) ham.addEventListener('click',()=>nav.classList.toggle('nav-active'));
+  </script>
+</body>
+</html>

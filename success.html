@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Order Success | Veloura</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<section class="success-page">
+  <div class="success-box">
+    <h1>🎉 Order Confirmed</h1>
+    <p>Your order has been placed successfully.</p>
+
+    <h3 id="order-id"></h3>
+
+    <a href="index.html" class="btn-primary">Continue Shopping</a>
+  </div>
+</section>
+
+<script>
+  const orderId = "ORD" + Math.floor(Math.random() * 1000000);
+  document.getElementById("order-id").innerText = "Order ID: " + orderId;
+</script>
+<h1>🎉 Order Placed Successfully!</h1>
+<p>Your Order ID: <strong id="order-id"></strong></p>
+
+<a href="index.html">Continue Shopping</a>
+<script>
+  const orderId = localStorage.getItem("orderId");
+  document.getElementById("order-id").innerText = "Order ID: " + orderId;
+</script>
+
+</body>
+</html>

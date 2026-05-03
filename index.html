@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veloura — Curated vintage and artisan fashion from India. Shop handloom, jewellery, and more.">
+  <title>Veloura | Timeless Indian Fashion</title>
+
+  <!-- Preconnect for performance (Step 7.2) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts (async loaded) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+
+  <!-- Icons (deferred) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+  
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">VELOURA.</div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search kurtas, jewellery…" aria-label="Search products">
+        <button aria-label="Search"><i class="fas fa-search"></i></button>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#shop">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <a href="login.html" style="color:rgba(255,255,255,0.7);font-size:18px;margin-right:4px" title="Account">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="cart.html" style="color:inherit;text-decoration:none">
+          <div class="cart-container">
+            <i class="fas fa-shopping-bag"></i>
+            <span id="cart-count" class="cart-badge">0</span>
+          </div>
+        </a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h1><em>Timeless</em><br>Elegance</h1>
+      <p>Curated artisan styles for modern India</p>
+      <a href="#shop" class="btn-primary">Explore Collection</a>
+    </div>
+  </section>
+
+  <section id="shop" class="shop-section">
+    <h2 class="section-title">Curated Collection</h2>
+    <div class="product-grid" id="product-grid">
+      <div class="loading">Curating your collection…</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">VELOURA.</div>
+        <p>Curated artisan fashion rooted in Indian craft traditions. Handpicked with love from across Bharat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">New Arrivals</a></li>
+          <li><a href="#shop">Kurtas & Sets</a></li>
+          <li><a href="#shop">Jewellery</a></li>
+          <li><a href="#shop">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Veloura</a></li>
+          <li><a href="#">Our Artisans</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 <span class="gold">Veloura</span>. Made with 🙏 in India.</span>
+      <span>All prices inclusive of GST · ₹ INR</span>
+    </div>
+  </footer>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

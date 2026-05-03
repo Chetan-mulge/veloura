@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up | Veloura</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&display=swap">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">VELOURA.</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-icons">
+      <a href="cart.html" style="color:inherit;text-decoration:none">
+        <div class="cart-container">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cart-count" class="cart-badge">0</span>
+        </div>
+      </a>
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <!-- AUTH SECTION -->
+  <section class="auth-section">
+    <div class="auth-container">
+
+      <!-- TOGGLE -->
+      <div class="auth-toggle">
+        <button id="login-btn" class="active" onclick="switchForm('login')">Login</button>
+        <button id="signup-btn" onclick="switchForm('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+        <h2>Welcome Back</h2>
+
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="Your password" required>
+        </div>
+
+        <button type="submit" class="btn-full">Login</button>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="signup-form" class="auth-form hidden" onsubmit="handleSignup(event)">
+        <h2>Create Account</h2>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" id="signup-name" placeholder="Priya Sharma" required>
+        </div>
+
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="signup-pass" placeholder="At least 8 characters" required>
+        </div>
+
+        <div class="input-group">
+          <label>Confirm Password</label>
+          <input type="password" id="signup-confirm" placeholder="Repeat password" required>
+        </div>
+
+        <button type="submit" class="btn-full">Create Account</button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/app.js"></script>
+
+  <script>
+    // Cart badge update
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const count = cart.reduce((s, i) => s + i.quantity, 0);
+      document.querySelectorAll('#cart-count').forEach(el => el.textContent = count);
+
+      // Mobile menu toggle
+      const ham = document.querySelector('.hamburger');
+      const nav = document.querySelector('.nav-links');
+      if (ham) {
+        ham.addEventListener('click', () => {
+          nav.classList.toggle('nav-active');
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
