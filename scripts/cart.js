@@ -1,4 +1,4 @@
-const userId = localStorage.getItem("userId");
+const user = JSON.parse(localStorage.getItem("veloura_user"));
 
 if (!userId) {
   window.location.href = "login.html";

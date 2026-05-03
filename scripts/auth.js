@@ -34,7 +34,7 @@ window.handleSignup = function(e) {
 
   localStorage.setItem("veloura_user", JSON.stringify({ name, email, password: pass }));
 
-  alert("Account created ✅");
+  alert("Account created ");
   switchForm("login");
 };
 
@@ -48,12 +48,12 @@ window.handleLogin = function(e) {
   const user = getUser();
 
   if (!user || user.email !== email || user.password !== pass) {
-    return alert("Invalid credentials ❌");
+    return alert("Invalid credentials ");
   }
 
   setSession(user);
 
-  alert("Login successful ✅");
+  alert("Login successful ");
   window.location.href = "index.html";
 };
 
@@ -80,7 +80,7 @@ async function login() {
 
   localStorage.setItem("userId", data.userId);
 
-  alert("Login successful ✅");
+  alert("Login successful ");
 
   window.location.href = "index.html";
 }

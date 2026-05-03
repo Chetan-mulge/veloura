@@ -39,7 +39,7 @@
         <i class="fas fa-user"></i>
       </a>
 
-      <!-- ✅ FIXED CART -->
+      <!--  FIXED CART -->
       <a href="cart.html" id="cart-link">
         <div class="cart-container">
           <i class="fas fa-shopping-bag"></i>
@@ -73,29 +73,36 @@
 
 <script src="scripts/app.js"></script>
 
-<!-- 🔥 LOGIN CHECK SCRIPT -->
+<!-- LOGIN CHECK SCRIPT -->
 <script>
-  const userId = localStorage.getItem("userId");
+  window.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("veloura_user"));
 
-  const cartLink = document.getElementById("cart-link");
-  const userLink = document.getElementById("user-link");
+    const cartLink = document.getElementById("cart-link");
+    const userLink = document.getElementById("user-link");
 
-  if (!userId) {
-    // Hide cart if not logged in
-    if (cartLink) cartLink.style.display = "none";
-  } else {
-    // Change user icon to logout
-    if (userLink) {
-      userLink.innerHTML = "Logout";
-      userLink.style.cursor = "pointer";
+    console.log("User:", user);
 
-      userLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.removeItem("userId");
-        window.location.reload();
-      });
+    if (user) {
+      // ✅ LOGGED IN
+      if (cartLink) cartLink.style.display = "inline-block";
+
+      if (userLink) {
+        userLink.innerHTML = "Logout";
+        userLink.style.cursor = "pointer";
+
+        userLink.onclick = function(e) {
+          e.preventDefault();
+          localStorage.removeItem("veloura_user");
+          window.location.reload();
+        };
+      }
+
+    } else {
+      // ❌ NOT LOGGED IN
+      if (cartLink) cartLink.style.display = "none";
     }
-  }
+  });
 </script>
 
 </body>
