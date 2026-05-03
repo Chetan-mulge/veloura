@@ -62,3 +62,25 @@ window.handleLogout = function() {
   localStorage.removeItem("veloura_session");
   window.location.href = "login.html";
 };
+
+
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("http://localhost:5000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  localStorage.setItem("userId", data.userId);
+
+  alert("Login successful ✅");
+
+  window.location.href = "index.html";
+}

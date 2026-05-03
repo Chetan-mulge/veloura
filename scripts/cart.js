@@ -1,11 +1,18 @@
-const cartItemsContainer = document.getElementById('cart-items');
-const subtotalEl = document.getElementById('subtotal-price');
-const totalEl = document.getElementById('total-price');
+const userId = localStorage.getItem("userId");
 
-function loadCart() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+if (!userId) {
+  window.location.href = "login.html";
+}
 
-  if (!cartItemsContainer) return;
+async function loadCart() {
+  const res = await fetch(`http://localhost:5000/cart/${userId}`);
+  const data = await res.json();
+
+  const cart = data.items || [];
+
+  const cartItemsContainer = document.getElementById("cart-items");
+  const subtotalEl = document.getElementById("subtotal-price");
+  const totalEl = document.getElementById("total-price");
 
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = "<p>Your cart is empty</p>";
@@ -14,18 +21,14 @@ function loadCart() {
     return;
   }
 
-  cartItemsContainer.innerHTML = "";
   let total = 0;
+  cartItemsContainer.innerHTML = "";
 
   cart.forEach(item => {
     const div = document.createElement("div");
-    div.className = "cart-item";
 
     div.innerHTML = `
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-        <span>${item.title} (x${item.quantity})</span>
-        <span>₹${item.price * item.quantity}</span>
-      </div>
+      ${item.title} (x${item.quantity}) - ₹${item.price}
     `;
 
     cartItemsContainer.appendChild(div);
@@ -36,4 +39,4 @@ function loadCart() {
   totalEl.innerText = "₹" + total;
 }
 
-window.addEventListener("DOMContentLoaded", loadCart);
+window.onload = loadCart;

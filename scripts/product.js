@@ -187,3 +187,32 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchProductDetails();
   updateCartCount();
 });
+
+
+async function saveCartToDB(cart) {
+
+  const userId = localStorage.getItem("userId");
+
+  if (!userId) return;
+
+  await fetch("http://localhost:5000/cart", {
+
+    method: "POST",
+
+    headers: {
+
+      "Content-Type": "application/json"
+
+    },
+
+    body: JSON.stringify({
+
+      userId,
+
+      items: cart
+
+    })
+
+  });
+
+}
